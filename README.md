@@ -64,3 +64,8 @@ create table user(
 mysql -u root demo1 < demo1.sql
 ```
 此时登录到数据库,可以看到user表已经创建好了
+
+使用sqlacodegen同步demo1中的表结构到models.py中,生成sqlalchemy的模型,使用python代码可以访问数据库
+```
+sqlacodegen mysql+pymysql://root:@localhost:3306/demo1 > models.py
+```
