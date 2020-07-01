@@ -69,3 +69,34 @@ mysql -u root demo1 < demo1.sql
 ```
 sqlacodegen mysql+pymysql://root:@localhost:3306/demo1 > models.py
 ```
+
+# Applicatioin
+```
+class MyApplication(tornado.web.Application):
+    def __init__(self):
+        #handlers = [
+        #    (r"/", IndexHandler),
+        #    (r"/login", LoginHandler),
+        #]
+        handlers = handler_list
+        # settings config
+        settings = dict(
+            template_path = 'templates', 
+            login_url = '/login',
+            cookie_secret = '123456',
+            pycket = {
+                'engine': 'redis',
+                'storage': {
+                    'host': 'localhost',
+                    'port': 6379,
+                },
+                'cookie': {
+                    'expires_days': 1
+                }
+            },
+            autoreload=True
+        )
+        super(MyApplication, self).__init__(handlers, **settings)
+
+app = MyApplication()
+```
