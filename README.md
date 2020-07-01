@@ -70,7 +70,7 @@ mysql -u root demo1 < demo1.sql
 sqlacodegen mysql+pymysql://root:@localhost:3306/demo1 > models.py
 ```
 
-# Applicatioin
+# Application配置相关参数
 ```
 class MyApplication(tornado.web.Application):
     def __init__(self):
@@ -81,20 +81,20 @@ class MyApplication(tornado.web.Application):
         handlers = handler_list
         # settings config
         settings = dict(
-            template_path = 'templates', 
-            login_url = '/login',
-            cookie_secret = '123456',
-            pycket = {
-                'engine': 'redis',
-                'storage': {
+            template_path = 'templates', # 模板地址
+            login_url = '/login', # 默认登录页面
+            cookie_secret = '123456', # 安全cookie
+            pycket = {  # pycket配置
+                'engine': 'redis',  # session引擎采用redis作为服务端存储
+                'storage': {  # redis的host和port
                     'host': 'localhost',
                     'port': 6379,
                 },
-                'cookie': {
+                'cookie': { # 默认session过期时间
                     'expires_days': 1
                 }
             },
-            autoreload=True
+            autoreload=True # 通过autoreload参数可以在修改代码以后自动重启服务
         )
         super(MyApplication, self).__init__(handlers, **settings)
 
