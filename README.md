@@ -100,3 +100,14 @@ class MyApplication(tornado.web.Application):
 
 app = MyApplication()
 ```
+
+# 遇到的问题及解决办法:
+## sqlalchemy Instance <User at xxx> is not bound to a Session;attribute refresh operation cannot proceed
+出现这个问题的原因是在commit提交以后,导致当前操作的Model对象不在当前的session中
+解决办法就是在提交之前来操作User对象或者使用merge方法,把对象重新放到session中
+```
+user = self.db.merge(user)
+```
+  
+## connection refused:
+出现连接被拒绝,并不是真的服务端拒绝了你,恰恰相反,是服务端挂了,或者这个端口压根没有任何程序在监听,所以处理方法是查找对应端口的服务进程是否异常
