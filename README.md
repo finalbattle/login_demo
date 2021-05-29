@@ -39,9 +39,21 @@ mysql -u root
 ```
 [mysqld]
 ...
-skip-grant-table
+skip-grant-tables
+```
+重启数据库
+```
+sudo service mysql restart
 ```
 重新登录数据库
+```
+mysql -u root
+```
+修改密码
+```
+use mysql;
+update user set authentication_string=password("root") where user="root";
+```
 
 
 创建数据库和数据表
