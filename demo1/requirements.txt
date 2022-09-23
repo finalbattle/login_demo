@@ -1,5 +1,5 @@
 mysql-connector-python==8.0.20
-protobuf==3.12.2
+protobuf==3.18.3
 pycket==0.3.0
 PyMySQL==0.9.3
 pyzmq==19.0.1
