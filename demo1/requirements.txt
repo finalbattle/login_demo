@@ -7,4 +7,4 @@ redis==3.5.3
 six==1.15.0
 sqlacodegen==2.2.0
 SQLAlchemy==1.3.18
-tornado==6.0.4
+tornado==6.3.2
